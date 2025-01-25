@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    container_name: wallet_db
+    environment:
+      POSTGRES_USER: wallet_admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: wallet_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - wallet_db_data:/var/lib/postgresql/data
+volumes:
+  wallet_db_data:
+
+    # todo: mudar as informações de acesso ao banco de dados para variaveis de ambiente
