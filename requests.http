@@ -1,28 +1,46 @@
+### CADASTRO
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-    "name": "test",
-    "email": "test22@test.com",
+    "name": "test2",
+    "email": "test2@test.com",
     "password": "123456"
 }
 
-###
+### LOGIN
 
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "test@test.com",
+    "email": "test2@test.com",
     "password": "123456"
 }
 
-###
+### ADICIONAR SALDO
 
 POST http://localhost:3000/wallet/add-balance
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTczNzgzMTQ1MiwiZXhwIjoxNzM3ODM1MDUyfQ.go1e37zbtkOl0hv9Pk9jGXHUqD-1WTsRz-rQlnBWy9Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTczNzgzNTk2OSwiZXhwIjoxNzM3ODM5NTY5fQ.ed8vO-YBNF-dg8YVrEIvjF5MNy6kPcSt6UzONczhPg4
 
 {
-    "amount": 2000
+    "amount": 4000
+}
+
+### LISTAR TRANSAÇÕES
+GET http://localhost:3000/transactions?startDate=2023-01-01&endDate=2023-12-31
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTczNzgzNTk2OSwiZXhwIjoxNzM3ODM5NTY5fQ.ed8vO-YBNF-dg8YVrEIvjF5MNy6kPcSt6UzONczhPg4
+
+{}
+
+### CRIAR TRANSAÇÃO
+POST http://localhost:3000/transactions/transfer
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsImlhdCI6MTczNzgzNjgzNywiZXhwIjoxNzM3ODQwNDM3fQ.NlwJA5l97MIHgJFtlhWFZyf5DII9y0hFLg7w3_JI1Lo
+
+{
+    "toWalletId": 1,
+    "amount": 1000
 }
