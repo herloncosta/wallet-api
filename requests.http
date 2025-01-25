@@ -9,10 +9,20 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/auth/authenticate
+POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
     "email": "test@test.com",
     "password": "123456"
+}
+
+###
+
+POST http://localhost:3000/wallet/add-balance
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTczNzgzMTQ1MiwiZXhwIjoxNzM3ODM1MDUyfQ.go1e37zbtkOl0hv9Pk9jGXHUqD-1WTsRz-rQlnBWy9Q
+
+{
+    "amount": 2000
 }
