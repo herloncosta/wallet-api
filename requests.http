@@ -3,13 +3,13 @@ Content-Type: application/json
 
 {
     "name": "test",
-    "email": "test@test.com",
+    "email": "test22@test.com",
     "password": "123456"
 }
 
 ###
 
-POST http://localhost:3000/auth/login
+POST http://localhost:3000/auth/authenticate
 Content-Type: application/json
 
 {
