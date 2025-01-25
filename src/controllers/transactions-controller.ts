@@ -3,6 +3,12 @@ import { prisma } from '../app'
 
 export async function transfer(req: Request, res: Response) {
     const { toWalletId, amount } = req.body
+
+    if (!req.userId) {
+        res.status(401).json({ error: 'Unauthorized' })
+        return
+    }
+
     const fromWalletId = +req.userId
 
     if (fromWalletId === toWalletId) {
@@ -45,6 +51,11 @@ export async function transfer(req: Request, res: Response) {
 }
 
 export async function listTransactions(req: Request, res: Response) {
+    if (!req.userId) {
+        res.status(401).json({ error: 'Unauthorized' })
+        return
+    }
+
     const userId = +req.userId
     const { startDate, endDate } = req.query
 

@@ -5,6 +5,18 @@ import { prisma } from '../app'
 
 export async function register(req: Request, res: Response) {
     const { name, email, password } = req.body
+
+    const userExists = await prisma.user.findUnique({
+        where: {
+            email,
+        },
+    })
+
+    if (userExists) {
+        res.status(400).json({ message: 'Email already registered' })
+        return
+    }
+
     try {
         const hashedPassword = await bcrypt.hash(password, 10)
 

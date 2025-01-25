@@ -1,11 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 
-type DecodedToken = {
-    userId: string
-}
-
-export function authenticate(req: Request, res: Response, next: NextFunction): void {
+export function authenticate(req: Request & { userId?: string }, res: Response, next: NextFunction): void {
     const token = req.headers['authorization']?.replace('Bearer ', '')
 
     if (!token) {
@@ -14,7 +10,8 @@ export function authenticate(req: Request, res: Response, next: NextFunction): v
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET) as DecodedToken
+        const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { userId: string }
+        console.log(decoded)
         req.userId = decoded.userId
         next()
     } catch (error) {
